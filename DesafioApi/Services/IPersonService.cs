@@ -6,13 +6,14 @@ using DesafioApi.Model;
 
 namespace DesafioApi.Services
 {
-    public interface IpersonService
+    public interface IPersonService
     {
 
         Person Create (Person person);
         Person FindById(long  Id);
         void Delete(long Id);
 
+        List<Person> FindAll();
         Person Update(Person person);
     }
 }

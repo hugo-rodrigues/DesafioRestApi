@@ -29,6 +29,10 @@ namespace DesafioApi
 
             services.AddControllers();
 
+            var  connection = Configuration["MySqlConnetion:MySqlConnetion"];
+
+            services.AddDbContext<MySqlContext>(options => options.UseMySql(connection));
+
             services.AddScoped<IPersonService, PersonServiceImplementation>();
 
             //services.AddSwaggerGen(c =>

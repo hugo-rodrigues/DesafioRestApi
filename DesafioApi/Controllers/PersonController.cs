@@ -31,6 +31,14 @@ namespace DesafioApi.Controllers
             return Ok(person);
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            
+
+           
+            return Ok(_personService.FindAll());
+        }
 
 
         [HttpPut]

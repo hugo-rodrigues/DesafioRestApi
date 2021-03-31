@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 namespace DesafioApi.Services.Implementation
 {
 
-    public class PersonServiceImplementation : IpersonService
+    public class PersonServiceImplementation : IPersonService
     {
+
+        private MysqlContext _context;
+        public PersonServiceImplementation(MysqlContext context)
+        {
+            _context = context;
+        }
 
         public Person Create (Person person)
         {
@@ -20,7 +26,12 @@ namespace DesafioApi.Services.Implementation
 
         }
 
-        public Person Findbyid (long Id)
+        public List<Person> FindAll()
+        {
+            return _context.Persons.ToList();
+        }
+
+        public Person Findbyid (long id)
         {
             return new Person
             {
