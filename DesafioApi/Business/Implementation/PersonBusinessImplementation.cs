@@ -1,19 +1,21 @@
 ﻿using DesafioApi.Model;
+using DesafioApi.Model.Context;
+using DesafioApi.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DesafioApi.Services.Implementation
+namespace DesafioApi.Business.Implementation
 {
 
-    public class PersonServiceImplementation : IPersonService
+    public class PersonBusinessImplementation : IPersonBusiness
     {
 
-        private MysqlContext _context;
-        public PersonServiceImplementation(MysqlContext context)
+        private readonly IPersonRepository _repository;
+        public PersonBusinessImplementation(IPersonRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public Person Create (Person person)
@@ -28,17 +30,14 @@ namespace DesafioApi.Services.Implementation
 
         public List<Person> FindAll()
         {
-            return _context.Persons.ToList();
+            return _repository.FindAll();
         }
 
-        public Person Findbyid (long id)
+     
+
+        public Person FindById(long Id)
         {
-            return new Person
-            {
-                Id = 1,
-                FullName = "Roberto Carlos",
-                Acesso = 2
-            };
+            throw new NotImplementedException();
         }
 
         public Person Update(Person person)

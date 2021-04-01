@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using DesafioApi.Services;
+
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using DesafioApi.Business;
 
 namespace DesafioApi.Controllers
 {
@@ -14,18 +15,18 @@ namespace DesafioApi.Controllers
     {
      
         private readonly ILogger<PersonController> _logger;
-        private IpersonService _personService;
+        private IPersonBusiness _personBusiness;
 
-        public PersonController(ILogger<PersonController> logger,IpersonService personService)
+        public PersonController(ILogger<PersonController> logger, IPersonBusiness personBusiness)
         {
             _logger = logger;
-            _personService = personService;
+            _personBusiness = personBusiness;
         }
 
         [HttpGet("{id}")]
        public IActionResult Get(long id)
         {
-            var person = _personService.FindById(id);
+            var person = _personBusiness.FindById(id);
 
             if (person == null) return NotFound();
             return Ok(person);
@@ -37,35 +38,7 @@ namespace DesafioApi.Controllers
             
 
            
-            return Ok(_personService.FindAll());
-        }
-
-
-        [HttpPut]
-        public IActionResult Put([Frombody] PersonController person)
-        {
-         
-
-            if (person == null) return BadRequest();
-            return Ok(_personService.Update(person));
-        }
-
-        [HttpPost]
-        public IActionResult Post([Frombody] PersonController person)
-        {
-
-
-            if (person == null) return BadRequest();
-            return Ok(_personService.Create(person));
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(long id)
-        {
-
-            _personService.Delete(id);
-            if (person == null) return NotFound();
-            return NoContent();
+            return Ok(_personBusiness.FindAll());
         }
     }
 }

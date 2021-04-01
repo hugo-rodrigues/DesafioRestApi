@@ -2,10 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DesafioApi.Business;
+using DesafioApi.Business.Implementation;
+using DesafioApi.Model.Context;
+using DesafioApi.Repository;
+using DesafioApi.Repository.Implementation;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,14 +38,16 @@ namespace DesafioApi
 
             var  connection = Configuration["MySqlConnetion:MySqlConnetion"];
 
-            services.AddDbContext<MySqlContext>(options => options.UseMySql(connection));
+            
+            services.AddDbContext<MySQLContext>(options => options.UseMySql(connection));
 
-            services.AddScoped<IPersonService, PersonServiceImplementation>();
+            services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
 
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "DesafioApi", Version = "v1" });
-            //});
+            services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DesafioApi", Version = "v1" });
+            });
 
         }
 
