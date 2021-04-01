@@ -15,18 +15,18 @@ namespace DesafioApi.Controllers
     {
      
         private readonly ILogger<PersonController> _logger;
-        private IPersonBusiness _personBusiness;
+        private IUsuarioBusiness _usuarioBusiness;
 
-        public PersonController(ILogger<PersonController> logger, IPersonBusiness personBusiness)
+        public PersonController(ILogger<PersonController> logger, IUsuarioBusiness usuarioBusiness)
         {
             _logger = logger;
-            _personBusiness = personBusiness;
+            _usuarioBusiness = usuarioBusiness;
         }
 
         [HttpGet("{id}")]
        public IActionResult Get(long id)
         {
-            var person = _personBusiness.FindById(id);
+            var person = _usuarioBusiness.FindById(id);
 
             if (person == null) return NotFound();
             return Ok(person);
@@ -38,7 +38,7 @@ namespace DesafioApi.Controllers
             
 
            
-            return Ok(_personBusiness.FindAll());
+            return Ok(_usuarioBusiness.FindAll());
         }
     }
 }

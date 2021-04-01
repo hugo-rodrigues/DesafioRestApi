@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 namespace DesafioApi.Business.Implementation
 {
 
-    public class PersonBusinessImplementation : IPersonBusiness
+    public class UsuarioBusinessImplementation : IUsuarioBusiness
     {
 
-        private readonly IPersonRepository _repository;
-        public PersonBusinessImplementation(IPersonRepository repository)
+        private readonly IUsuarioRepository _repository;
+        public UsuarioBusinessImplementation(IUsuarioRepository repository)
         {
             _repository = repository;
         }
 
-        public Person Create (Person person)
+        public Usuario Create (Usuario person)
         {
             return person;
         }
@@ -28,21 +28,26 @@ namespace DesafioApi.Business.Implementation
 
         }
 
-        public List<Person> FindAll()
+        public bool Exists(long id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Usuario> FindAll()
         {
             return _repository.FindAll();
         }
 
      
 
-        public Person FindById(long Id)
+        public Usuario FindById(long Id)
         {
             throw new NotImplementedException();
         }
 
-        public Person Update(Person person)
+        public Usuario Update(Usuario usuario)
         {
-            return person;
+            return usuario;
         }
 
 

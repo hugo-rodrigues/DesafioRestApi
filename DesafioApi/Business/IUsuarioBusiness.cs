@@ -6,13 +6,13 @@ using DesafioApi.Model;
 
 namespace DesafioApi.Business
 {
-    public interface IPersonBusiness
+    public interface IUsuarioBusiness
     {
 
-        Person Create(Person person);
-        Person FindById(long id);
-        List<Person> FindAll();
-        Person Update(Person person);
+        Usuario Create(Usuario usuario);
+        Usuario FindById(long id);
+        List<Usuario> FindAll();
+        Usuario Update(Usuario usuario);
         void Delete(long id);
 
         bool Exists(long id);

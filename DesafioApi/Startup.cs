@@ -41,9 +41,22 @@ namespace DesafioApi
             
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connection));
 
-            services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
+            services.AddScoped<IUsuarioBusiness, UsuarioBusinessImplementation>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepositoryImplementation>();
 
-            services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
+            services.AddScoped<IAlunoBusiness, AlunoBusinessImplementation>();
+            services.AddScoped<IAlunoRepository, AlunoRepositoryImplementation>();
+
+
+            services.AddScoped<ITurmaBusiness, TurmaBusinessImplementation>();
+            services.AddScoped<ITurmaRepository, TurmaRepositoryImplementation>();
+
+
+            services.AddScoped<IEscolaBusiness, EscolaBusinessImplementation>();
+            services.AddScoped<IEscolaRepository, EscolaRepositoryImplementation>();
+
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DesafioApi", Version = "v1" });

@@ -17,6 +17,13 @@ namespace DesafioApi.Model.Context
         {
         }
 
-        public DbSet<Person> Persons { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
+
+        public DbSet<Aluno> Alunos { get; set; }
+
+        public DbSet<Escola> Escolas { get; set; }
+
+        public DbSet<Turma> Turmas { get; set; }
+
     }
 }
