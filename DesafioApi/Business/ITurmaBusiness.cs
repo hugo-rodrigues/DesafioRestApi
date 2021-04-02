@@ -17,9 +17,9 @@ namespace DesafioApi.Business
 
         bool Exists(long id);
 
-        public string MediaDosAlunosPorTurma();
+        public string MediaDosAlunosPorTurma(long id);
 
-        public string ListaDosAlunosPorTurma();
+        public string ListaDosAlunosPorTurma(long id);
 
         public bool ExistsAlunosComTurmas(long id);
     }

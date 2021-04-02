@@ -87,14 +87,38 @@ namespace DesafioApi.Repository.Implementation
             }
         }
 
-        public string ListaDosAlunosPorTurma()
+        public string ListaDosAlunosPorTurma(long id)
         {
-            throw new NotImplementedException();
+            var query = from turmas in _context.Turmas
+                        join alunos in _context.Alunos on turmas.Id equals alunos.TurmaId
+                        join escolas in _context.Escolas on turmas.EscolaId equals escolas.Id
+                        orderby turmas.Id
+                        where id == escolas.Id
+                        select new { turmas.Id, turmas.Nome, nomeAluno = alunos.Nome, alunos.Nota };
+
+
+
+            return "query";
         }
 
-        public string MediaDosAlunosPorTurma()
+        public string MediaDosAlunosPorTurma(long id)
         {
-            throw new NotImplementedException();
+            var query = from turmas in _context.Turmas
+                        join alunos in _context.Alunos on turmas.Id equals alunos.TurmaId
+                        join escolas in _context.Escolas on turmas.EscolaId equals escolas.Id
+                        where id == escolas.Id
+                        group new { turmas, alunos } by new { turmas.Id } into g
+                        select new
+                        {
+
+                            g.Key.Id,
+                            nomeTurma = g.Select(x => x.turmas.Nome),
+                            mediaAlunos = g.Select(y => y.alunos.Nota).Average()
+
+                        };
+
+            string result = query.ToString();
+            return "query";
         }
     }
 }

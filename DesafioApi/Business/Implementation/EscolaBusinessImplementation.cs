@@ -23,8 +23,22 @@ namespace DesafioApi.Business.Implementation
 
         public void Delete(long id)
         {
+            
+            try
+            {
+                if (!ExistsTurmasComEscola(id))
+                {
+                    _repository.Delete(id);
+                }
+                  
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+          
            
-            _repository.Delete(id);
+          
         }
 
         public bool Exists(long id)
@@ -49,14 +63,14 @@ namespace DesafioApi.Business.Implementation
             return _repository.Update(escola);
         }
 
-        public string ListaDosAlunosPorTurma()
+        public string ListaDosAlunosPorTurma(long id)
         {
-            return _repository.ListaDosAlunosPorTurma();
+            return _repository.ListaDosAlunosPorTurma(id);
         }
 
-        public string MediaDosAlunosPorTurma()
+        public string MediaDosAlunosPorTurma(long id)
         {
-            return _repository.MediaDosAlunosPorTurma();
+            return _repository.MediaDosAlunosPorTurma( id);
         }
 
         public bool ExistsTurmasComEscola(long id)

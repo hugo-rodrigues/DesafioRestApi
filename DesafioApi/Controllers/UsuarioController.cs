@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DesafioApi.Business;
+using DesafioApi.Model;
 
 namespace DesafioApi.Controllers
 {
@@ -16,11 +17,17 @@ namespace DesafioApi.Controllers
      
         private readonly ILogger<PersonController> _logger;
         private IUsuarioBusiness _usuarioBusiness;
+        private IAlunoBusiness _alunoBusiness;
+        private IEscolaBusiness _escolaBusiness;
+        private ITurmaBusiness _turmaBusiness;
 
-        public PersonController(ILogger<PersonController> logger, IUsuarioBusiness usuarioBusiness)
+        public PersonController(ILogger<PersonController> logger, IUsuarioBusiness usuarioBusiness, IAlunoBusiness alunoBusiness, IEscolaBusiness escolaBusiness, ITurmaBusiness turmaBusiness)
         {
             _logger = logger;
             _usuarioBusiness = usuarioBusiness;
+            _turmaBusiness = turmaBusiness;
+            _escolaBusiness = escolaBusiness;
+           _alunoBusiness = alunoBusiness;
         }
 
         [HttpGet("{id}")]
@@ -35,10 +42,34 @@ namespace DesafioApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            
-
-           
             return Ok(_usuarioBusiness.FindAll());
+        }
+
+
+       
+        [HttpPost]    
+        public IActionResult Post([FromBody] Usuario usuario)
+        {
+            if (usuario == null) return BadRequest();
+            return new ObjectResult(_usuarioBusiness.Create(usuario));
+        }
+
+     
+        [HttpPut]    
+        public IActionResult Put([FromBody] Usuario usuario)
+        {
+            if (usuario == null) return BadRequest();
+            return new ObjectResult(_usuarioBusiness.Update(usuario));
+        }
+
+        // Configura o Swagger para a operação
+        // http://localhost:{porta}/api/person/{id}
+        // O [SwaggerResponse(XYZ)] define os códigos de retorno 400 e 401
+        [HttpDelete("{id}")]   
+        public IActionResult Delete(long id)
+        {
+            _usuarioBusiness.Delete(id);
+            return NoContent();
         }
     }
 }
