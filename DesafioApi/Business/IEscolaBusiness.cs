@@ -9,10 +9,10 @@ namespace DesafioApi.Business
     public interface IEscolaBusiness
     {
 
-        Usuario Create(Usuario usuario);
-        Usuario FindById(long id);
-        List<Usuario> FindAll();
-        Usuario Update(Usuario usuario);
+        Escola Create(Escola escola);
+        Escola FindById(long id);
+        List<Escola> FindAll();
+        Escola Update(Escola escola);
         void Delete(long id);
 
         bool Exists(long id);
@@ -20,5 +20,7 @@ namespace DesafioApi.Business
         public string MediaDosAlunosPorTurma();
 
         public string ListaDosAlunosPorTurma();
+
+        public bool ExistsTurmasComEscola(long id);
     }
 }

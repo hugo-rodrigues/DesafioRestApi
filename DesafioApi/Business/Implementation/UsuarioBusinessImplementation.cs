@@ -18,19 +18,19 @@ namespace DesafioApi.Business.Implementation
             _repository = repository;
         }
 
-        public Usuario Create (Usuario person)
+        public Usuario Create (Usuario usuario)
         {
-            return person;
+            return _repository.Create(usuario);
         }
 
         public void Delete (long id)
         {
-
+            _repository.Delete(id);
         }
 
         public bool Exists(long id)
         {
-            throw new NotImplementedException();
+            return _repository.Exists(id);
         }
 
         public List<Usuario> FindAll()
@@ -40,14 +40,14 @@ namespace DesafioApi.Business.Implementation
 
      
 
-        public Usuario FindById(long Id)
+        public Usuario FindById(long id)
         {
-            throw new NotImplementedException();
+            return _repository.FindById(id);
         }
 
         public Usuario Update(Usuario usuario)
         {
-            return usuario;
+            return _repository.Update(usuario);
         }
 
 

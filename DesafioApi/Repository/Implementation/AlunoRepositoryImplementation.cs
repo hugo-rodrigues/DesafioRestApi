@@ -15,34 +15,69 @@ namespace DesafioApi.Repository.Implementation
             _context = context;
         }
 
-        public Usuario Create(Aluno aluno)
+        public Aluno Create(Aluno aluno)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Add(aluno);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return aluno;
         }
 
-        public void Delete(long id)
+        public Aluno Update(Aluno aluno)
         {
-            throw new NotImplementedException();
+
+            if (!Exists(aluno.Id)) return new Aluno();
+
+            var result = _context.Alunos.SingleOrDefault(b => b.Id == aluno.Id);
+            if (result != null)
+            {
+                try
+                {
+                    _context.Entry(result).CurrentValues.SetValues(aluno);
+                    _context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return result;
         }
 
         public bool Exists(long id)
         {
-            throw new NotImplementedException();
+            return _context.Alunos.Any(b => b.Id.Equals(id));
         }
 
         public List<Aluno> FindAll()
         {
-            throw new NotImplementedException();
+            return _context.Alunos.ToList();
         }
 
-        public Usuario FindById(long id)
+        public Aluno FindById(long id)
         {
-            throw new NotImplementedException();
+            return _context.Alunos.SingleOrDefault(p => p.Id.Equals(id));
         }
 
-        public Usuario Update(Aluno aluno)
+        
+        public void Delete(long id)
         {
-            throw new NotImplementedException();
+            var result = _context.Alunos.SingleOrDefault(i => i.Id.Equals(id));
+            try
+            {
+                if (result != null) _context.Alunos.Remove(result);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

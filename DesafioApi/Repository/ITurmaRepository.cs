@@ -9,10 +9,10 @@ namespace DesafioApi.Repository
     public interface ITurmaRepository
     {
 
-        Usuario Create(Turma turma);
-        Usuario FindById(long id);
+        Turma Create(Turma turma);
+        Turma FindById(long id);
         List<Turma> FindAll();
-        Usuario Update(Turma turma);
+        Turma Update(Turma turma);
         void Delete(long id);
 
         bool Exists(long id);
@@ -20,5 +20,7 @@ namespace DesafioApi.Repository
         public string MediaDosAlunosPorTurma();
 
         public string ListaDosAlunosPorTurma();
+
+        public bool ExistsAlunosComTurmas(long id);
     }
 }

@@ -17,37 +17,77 @@ namespace DesafioApi.Repository.Implementation
 
 
 
-        public Usuario Create(Escola escola)
+        public Escola Create(Escola escola)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Add(escola);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return escola;
         }
 
-        public void Delete(long id)
+        public Escola Update(Escola escola)
         {
-            throw new NotImplementedException();
+
+            if (!Exists(escola.Id)) return new Escola();
+
+            var result = _context.Escolas.SingleOrDefault(b => b.Id == escola.Id);
+            if (result != null)
+            {
+                try
+                {
+                    _context.Entry(result).CurrentValues.SetValues(escola);
+                    _context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return result;
         }
 
         public bool Exists(long id)
         {
-            throw new NotImplementedException();
+            return _context.Escolas.Any(b => b.Id.Equals(id));
+        }
+
+        public bool ExistsTurmasComEscola(long id)
+        {
+            return _context.Turmas.Any(b => b.EscolaId.Equals(id));
         }
 
         public List<Escola> FindAll()
         {
-            throw new NotImplementedException();
+            return _context.Escolas.ToList();
         }
 
-        public Usuario FindById(long id)
+        public Escola FindById(long id)
         {
-            throw new NotImplementedException();
+            return _context.Escolas.SingleOrDefault(p => p.Id.Equals(id));
         }
 
-        public Usuario Update(Escola escola)
+
+        public void Delete(long id)
         {
-            throw new NotImplementedException();
+            var result = _context.Escolas.SingleOrDefault(i => i.Id.Equals(id));
+            try
+            {
+                if (result != null) _context.Escolas.Remove(result);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-       public string ListaDosAlunosPorTurma()
+        public string ListaDosAlunosPorTurma()
         {
             throw new NotImplementedException();
         }

@@ -16,34 +16,36 @@ namespace DesafioApi.Business.Implementation
             _repository = repository;
         }
 
-        public Usuario Create(Aluno aluno)
+        public Aluno Create(Aluno aluno)
         {
-            throw new NotImplementedException();
+            return _repository.Create(aluno);
         }
 
         public void Delete(long id)
         {
-            throw new NotImplementedException();
+            _repository.Delete(id);
         }
 
         public bool Exists(long id)
         {
-            throw new NotImplementedException();
+            return _repository.Exists(id);
         }
 
         public List<Aluno> FindAll()
         {
-            throw new NotImplementedException();
+            return _repository.FindAll();
         }
 
-        public Usuario FindById(long id)
+
+
+        public Aluno FindById(long id)
         {
-            throw new NotImplementedException();
+            return _repository.FindById(id);
         }
 
-        public Usuario Update(Aluno aluno)
+        public Aluno Update(Aluno aluno)
         {
-            throw new NotImplementedException();
+            return _repository.Update(aluno);
         }
     }
 }

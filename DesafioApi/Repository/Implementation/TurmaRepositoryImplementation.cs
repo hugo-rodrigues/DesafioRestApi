@@ -15,29 +15,74 @@ namespace DesafioApi.Repository.Implementation
             _context = context;
         }
 
-        public Usuario Create(Turma turma)
+        public Turma Create(Turma turma)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Add(turma);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return turma;
         }
 
-        public void Delete(long id)
+        public Turma Update(Turma turma)
         {
-            throw new NotImplementedException();
+
+            if (!Exists(turma.Id)) return new Turma();
+
+            var result = _context.Turmas.SingleOrDefault(b => b.Id == turma.Id);
+            if (result != null)
+            {
+                try
+                {
+                    _context.Entry(result).CurrentValues.SetValues(turma);
+                    _context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return result;
         }
 
         public bool Exists(long id)
         {
-            throw new NotImplementedException();
+            return _context.Turmas.Any(b => b.Id.Equals(id));
+        }
+
+        public bool ExistsAlunosComTurmas(long id)
+        {
+            return _context.Alunos.Any(b => b.TurmaId.Equals(id));
         }
 
         public List<Turma> FindAll()
         {
-            throw new NotImplementedException();
+            return _context.Turmas.ToList();
         }
 
-        public Usuario FindById(long id)
+        public Turma FindById(long id)
         {
-            throw new NotImplementedException();
+            return _context.Turmas.SingleOrDefault(p => p.Id.Equals(id));
+        }
+
+
+        public void Delete(long id)
+        {
+            var result = _context.Turmas.SingleOrDefault(i => i.Id.Equals(id));
+            try
+            {
+                if (result != null) _context.Turmas.Remove(result);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public string ListaDosAlunosPorTurma()
@@ -47,12 +92,18 @@ namespace DesafioApi.Repository.Implementation
 
         public string MediaDosAlunosPorTurma()
         {
-            throw new NotImplementedException();
+            //var query = from t in _context.Turmas
+            //            join a in _context.Alunos
+            //                on 
+            //                group t by t.Id into grupoTurma
+            //            select  grupoTurma ;
+
+            //var teste = query.Average(x => x.Key)
+
+        
+            return "query";
         }
 
-        public Usuario Update(Turma turma)
-        {
-            throw new NotImplementedException();
-        }
+  
     }
 }

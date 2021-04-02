@@ -15,42 +15,49 @@ namespace DesafioApi.Business.Implementation
             _repository = repository;
         }
 
-        public Usuario Create(Usuario usuario)
+        public Turma Create(Turma turma)
         {
-            throw new NotImplementedException();
+            return _repository.Create(turma);
         }
 
         public void Delete(long id)
         {
-            throw new NotImplementedException();
+            _repository.Delete(id);
         }
 
         public bool Exists(long id)
         {
-            throw new NotImplementedException();
+            return _repository.Exists(id);
         }
 
-        public List<Usuario> FindAll()
+        public List<Turma> FindAll()
         {
-            throw new NotImplementedException();
+            return _repository.FindAll();
         }
 
-        public Usuario FindById(long id)
+
+
+        public Turma FindById(long id)
         {
-            throw new NotImplementedException();
+            return _repository.FindById(id);
+        }
+
+        public Turma Update(Turma turma)
+        {
+            return _repository.Update(turma);
         }
 
         public string ListaDosAlunosPorTurma()
         {
-            throw new NotImplementedException();
+            return _repository.ListaDosAlunosPorTurma();
         }
 
         public string MediaDosAlunosPorTurma()
         {
-            throw new NotImplementedException();
+            return _repository.MediaDosAlunosPorTurma();
         }
 
-        public Usuario Update(Usuario usuario)
+        public bool ExistsAlunosComTurmas(long id)
         {
             throw new NotImplementedException();
         }

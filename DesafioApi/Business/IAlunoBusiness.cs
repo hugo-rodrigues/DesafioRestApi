@@ -9,10 +9,10 @@ namespace DesafioApi.Business
     public interface IAlunoBusiness
     {
 
-        Usuario Create(Aluno aluno);
-        Usuario FindById(long id);
+        Aluno Create(Aluno aluno);
+        Aluno FindById(long id);
         List<Aluno> FindAll();
-        Usuario Update(Aluno aluno);
+        Aluno Update(Escola aluno);
         void Delete(long id);
 
         bool Exists(long id);

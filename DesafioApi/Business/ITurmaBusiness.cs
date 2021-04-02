@@ -9,10 +9,10 @@ namespace DesafioApi.Business
     public interface ITurmaBusiness
     {
 
-        Usuario Create(Usuario usuario);
-        Usuario FindById(long id);
-        List<Usuario> FindAll();
-        Usuario Update(Usuario usuario);
+        Turma Create(Turma turma);
+        Turma FindById(long id);
+        List<Turma> FindAll();
+        Turma Update(Turma turma);
         void Delete(long id);
 
         bool Exists(long id);
@@ -20,5 +20,7 @@ namespace DesafioApi.Business
         public string MediaDosAlunosPorTurma();
 
         public string ListaDosAlunosPorTurma();
+
+        public bool ExistsAlunosComTurmas(long id);
     }
 }

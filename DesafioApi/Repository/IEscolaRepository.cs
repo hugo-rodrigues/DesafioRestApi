@@ -9,10 +9,10 @@ namespace DesafioApi.Repository
     public interface IEscolaRepository
     {
 
-        Usuario Create(Escola escola);
-        Usuario FindById(long id);
+        Escola Create(Escola escola);
+        Escola FindById(long id);
         List<Escola> FindAll();
-        Usuario Update(Escola escola);
+        Escola Update(Escola escola);
         void Delete(long id);
 
         bool Exists(long id);
@@ -20,5 +20,7 @@ namespace DesafioApi.Repository
         public string MediaDosAlunosPorTurma();
 
         public string ListaDosAlunosPorTurma();
+
+        public bool ExistsTurmasComEscola(long id);
     }
 }
