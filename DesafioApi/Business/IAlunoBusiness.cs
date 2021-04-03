@@ -12,7 +12,7 @@ namespace DesafioApi.Business
         Aluno Create(Aluno aluno);
         Aluno FindById(long id);
         List<Aluno> FindAll();
-        Aluno Update(Escola aluno);
+        Aluno Update(Aluno aluno);
         void Delete(long id);
 
         bool Exists(long id);

@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace DesafioApi.Repository.Implementation
 {
@@ -94,31 +96,28 @@ namespace DesafioApi.Repository.Implementation
                         join escolas in _context.Escolas on turmas.EscolaId equals escolas.Id
                         orderby turmas.Id
                         where id == escolas.Id
-                        select new { turmas.Id, turmas.Nome, nomeAluno = alunos.Nome, alunos.Nota };
+                        select new { turmas.Id, turmas.Nome, nomeAluno = alunos.Nome, alunos.Nota }.ToString(); ;
 
 
 
-            return "query";
+            string jsonString = JsonSerializer.Serialize(query);
+            return jsonString;
         }
 
         public string MediaDosAlunosPorTurma(long id)
         {
+          
             var query = from turmas in _context.Turmas
-                        join alunos in _context.Alunos on turmas.Id equals alunos.TurmaId
-                        join escolas in _context.Escolas on turmas.EscolaId equals escolas.Id
-                        where id == escolas.Id
-                        group new { turmas, alunos } by new { turmas.Id } into g
+                        where id == turmas.EscolaId
                         select new
                         {
-
-                            g.Key.Id,
-                            nomeTurma = g.Select(x => x.turmas.Nome),
-                            mediaAlunos = g.Select(y => y.alunos.Nota).Average()
+                            turmas.Id,
+                            turmas.Nome,
+                            mediaAlunos = _context.Alunos.Where(a => a.TurmaId == turmas.Id).Average(a => a.Nota)
 
                         };
-
-            string result = query.ToString();
-            return "query";
+            string jsonString = JsonSerializer.Serialize(query);
+            return jsonString;
         }
     }
 }

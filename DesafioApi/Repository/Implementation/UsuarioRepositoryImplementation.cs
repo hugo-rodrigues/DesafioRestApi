@@ -34,9 +34,9 @@ namespace DesafioApi.Repository.Implementation
         public Usuario Update(Usuario usuario)
         {
           
-            if (!Exists(usuario.Id)) return new Escola();
+            if (!Exists(usuario.Id)) return new Usuario();
 
-            var result = _context.Escolas.SingleOrDefault(b => b.Id == usuario.Id);
+            var result = _context.Usuarios.SingleOrDefault(b => b.Id == usuario.Id);
             if (result != null)
             {
                 try
@@ -54,17 +54,17 @@ namespace DesafioApi.Repository.Implementation
 
         public bool Exists(long id)
         {
-            return _context.Escolas.Any(b => b.Id.Equals(id));
+            return _context.Usuarios.Any(b => b.Id.Equals(id));
         }
 
         public List<Usuario> FindAll()
         {
-            return _context.Escolas.ToList();
+            return _context.Usuarios.ToList();
         }
 
         public Usuario FindById(long id)
         {
-            return _context.Escolas.SingleOrDefault(p => p.Id.Equals(id));
+            return _context.Usuarios.SingleOrDefault(p => p.Id.Equals(id));
         }
 
 

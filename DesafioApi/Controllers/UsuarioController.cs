@@ -12,16 +12,16 @@ namespace DesafioApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PersonController : ControllerBase
+    public class UsuarioController : ControllerBase
     {
      
-        private readonly ILogger<PersonController> _logger;
+        private readonly ILogger<UsuarioController> _logger;
         private IUsuarioBusiness _usuarioBusiness;
         private IAlunoBusiness _alunoBusiness;
         private IEscolaBusiness _escolaBusiness;
         private ITurmaBusiness _turmaBusiness;
 
-        public PersonController(ILogger<PersonController> logger, IUsuarioBusiness usuarioBusiness, IAlunoBusiness alunoBusiness, IEscolaBusiness escolaBusiness, ITurmaBusiness turmaBusiness)
+        public UsuarioController(ILogger<UsuarioController> logger, IUsuarioBusiness usuarioBusiness, IAlunoBusiness alunoBusiness, IEscolaBusiness escolaBusiness, ITurmaBusiness turmaBusiness)
         {
             _logger = logger;
             _usuarioBusiness = usuarioBusiness;
@@ -62,9 +62,7 @@ namespace DesafioApi.Controllers
             return new ObjectResult(_usuarioBusiness.Update(usuario));
         }
 
-        // Configura o Swagger para a operação
-        // http://localhost:{porta}/api/person/{id}
-        // O [SwaggerResponse(XYZ)] define os códigos de retorno 400 e 401
+     
         [HttpDelete("{id}")]   
         public IActionResult Delete(long id)
         {
