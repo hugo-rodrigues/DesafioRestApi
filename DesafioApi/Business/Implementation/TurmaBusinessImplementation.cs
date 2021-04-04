@@ -59,7 +59,7 @@ namespace DesafioApi.Business.Implementation
             return _repository.Update(turma);
         }
 
-        public string ListaDosAlunosPorTurma(long id)
+        public IQueryable<string> ListaDosAlunosPorTurma(long id)
         {
             return _repository.ListaDosAlunosPorTurma(id);
         }

@@ -69,5 +69,29 @@ namespace DesafioApi.Controllers
             _usuarioBusiness.Delete(id);
             return NoContent();
         }
+
+        [HttpPost]
+        [Route("login")]
+        public async Task<ActionResult<dynamic>> Authenticate([FromBody] Usuario usuario)
+        {
+          
+            var user = _usuarioBusiness.FindById(usuario.Id);
+
+           
+            if (user == null)
+                return NotFound(new { message = "Usuário ou senha inválidos" });
+
+           
+            var token = TokenService.GenerateToken(user);
+
+          
+
+           
+            return new
+            {
+                user = user,
+                token = token
+            };
+        }
     }
 }

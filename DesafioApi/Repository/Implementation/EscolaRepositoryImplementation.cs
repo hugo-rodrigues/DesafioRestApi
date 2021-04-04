@@ -89,7 +89,7 @@ namespace DesafioApi.Repository.Implementation
             }
         }
 
-        public string ListaDosAlunosPorTurma(long id)
+        public IQueryable<string> ListaDosAlunosPorTurma(long id)
         {
             var query = from turmas in _context.Turmas
                         join alunos in _context.Alunos on turmas.Id equals alunos.TurmaId
@@ -100,8 +100,8 @@ namespace DesafioApi.Repository.Implementation
 
 
 
-            string jsonString = JsonSerializer.Serialize(query);
-            return jsonString;
+            
+            return query;
         }
 
         public string MediaDosAlunosPorTurma(long id)

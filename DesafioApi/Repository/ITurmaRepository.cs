@@ -19,7 +19,7 @@ namespace DesafioApi.Repository
 
         public string MediaDosAlunosPorTurma(long id);
 
-        public string ListaDosAlunosPorTurma(long id);
+        public IQueryable<string> ListaDosAlunosPorTurma(long id);
 
         public bool ExistsAlunosComTurmas(long id);
     }

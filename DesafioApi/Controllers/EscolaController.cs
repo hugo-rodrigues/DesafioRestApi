@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using DesafioApi.Business;
 using DesafioApi.Model;
 using Microsoft.AspNetCore.Authorization;
+using System.Web.Http.OData;
 
 namespace DesafioApi.Controllers
 {
@@ -69,14 +70,15 @@ namespace DesafioApi.Controllers
 
 
         [HttpGet("MediaDosAlunosPorTurma/{id}")]
-        [Authorize(Roles = "Escola,Turma")]
+       // [Authorize(Roles = "Escola,Turma")]
         public IActionResult GetMediaDosAlunosPorTurma( long id)
         {
             return Ok(_escolaBusiness.MediaDosAlunosPorTurma(id));
         }
 
         [HttpGet("GetListaDosAlunosPorTurma/{id}")]
-        [Authorize(Roles = "Escola,Turma")]
+        [EnableQuery]
+       // [Authorize(Roles = "Escola,Turma")]
         public IActionResult GetListaDosAlunosPorTurma(long id)
         {
             return Ok(_escolaBusiness.ListaDosAlunosPorTurma(id));
